@@ -12,13 +12,13 @@ public class PlayerStats : MonoBehaviour
     public async Task ActiveShield()
     {
         playerHasShield = true;
-        Debug.Log("Shield activated");
+        Debug.Log("Ёффект щита началс€");
         shieldObject.gameObject.SetActive(true);
         
         await Task.Delay(shieldTimer * 1000);
         
         shieldObject.gameObject.SetActive(false);
-        Debug.Log("Shield dispawned");
+        Debug.Log("Ёффект щита закончилс€");
         playerHasShield = false;
     }
 
@@ -53,7 +53,8 @@ public class PlayerStats : MonoBehaviour
         if(playerHealth <= 0)
         {
             // Event to stop game.
-            Debug.Log("You Dead!");
+            Debug.Log("»грок умер");
+            
         }
     }
 

@@ -10,6 +10,7 @@ public class PlayerShootController : MonoBehaviour
     [SerializeField] Transform spawnPosition;
     bool canShoot = true;
 
+    [SerializeField] int reloadTimeInMilliseconds = 100;
     CustomPool<TestProjectileScript> pool;
     
     void Start()
@@ -24,13 +25,12 @@ public class PlayerShootController : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space))
         {
-            Debug.Log("Shoot!");
             var projectile = pool.Get();
             projectile.transform.position = spawnPosition.position;
             canShoot = false;
 
-            await Task.Delay(100);
-            Debug.Log("Can shoot!");
+            await Task.Delay(reloadTimeInMilliseconds);
+            Debug.Log("Игрок перезарядился");
             canShoot = true;
         }   
     }

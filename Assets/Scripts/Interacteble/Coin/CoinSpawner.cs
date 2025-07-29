@@ -7,23 +7,21 @@ public class CoinSpawner : MonoBehaviour
     [SerializeField] int fistPoolInitCount = 10;
     CustomPool<Coin> coinPool;
 
-    public void Start()
+    void Start()
     {
         coinPool = new CustomPool<Coin>(pfCoin, fistPoolInitCount, objectParent);
         
-        EventBus.Sus.spawnCoin += SpawnCoin;
+        EventBus.Get.spawnCoin += SpawnCoin;
     }
 
 
     public void SpawnCoin(Vector3 position, int moneyForThisCoin)
     {
-        Debug.Log("Testing");
+        Debug.Log("Монета заспавнена");
 
         var coin = coinPool.Get();
+        coin.transform.position = position;
 
         coin.SetCoinValue(moneyForThisCoin);
-
-        coin.transform.position = position;
-        // Get Coin from CointPool.
     }
 }

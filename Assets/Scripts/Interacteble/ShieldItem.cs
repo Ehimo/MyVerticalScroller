@@ -9,11 +9,10 @@ public class ShieldItem : MonoBehaviour, IDispawnObject, IInteracteble
         playerStats = FindFirstObjectByType<PlayerStats>();
     }
 
-    public void OnInteract()
+    public async void OnInteract()
     {
-        Debug.Log("Shield need to be activete!");
-        playerStats.ActiveShield();
+        Debug.Log("Игрок взял щит");
+        await playerStats.ActiveShield();
         gameObject.SetActive(false);
-
     }
 }

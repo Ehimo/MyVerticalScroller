@@ -3,19 +3,20 @@ using UnityEngine;
 
 public class EventBus
 {
-    static EventBus sus;
-    public static EventBus Sus 
+    static EventBus get;
+    public static EventBus Get 
     {
         get
         {
-            if(sus == null)
+            if(get == null)
             {
-                sus = new EventBus();
+                get = new EventBus();
             }
 
-            return sus;
+            return get;
         }
     }
     // public Action<Coin> coinReleased;
     public Action<Vector3, int> spawnCoin;
+    public Action<int> addThisCoinAndSave;
 }

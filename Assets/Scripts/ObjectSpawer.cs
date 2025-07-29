@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ObjectSpawer : MonoBehaviour
 {
-    float xMin = -5.2f;
-    float xMax = 5.2f;
+    float xMinSpawnPosition = -5.2f;
+    float xMaxSpawnPosition = 5.2f;
 
     [SerializeField] float spawnTimer = 0.5f;
     float timer = 0;
@@ -28,19 +26,22 @@ public class ObjectSpawer : MonoBehaviour
         if(timer >= spawnTimer)
         {
             timer = 0;
+
+            int objectToSpawnCount = UnityEngine.Random.Range(2, 4);
+
+            for(int i = 0; i < objectToSpawnCount; i++)
+            {
+                // Радномно сгенерировать типы обектов которые будут спавниться.
+                var asteroid = pool.Get();
+                asteroid.transform.position = GeneratePosition();
+            }
             
-
-            var asteroid = pool.Get();
-            asteroid.transform.position = GeneratePosition();
-
-            asteroid = pool.Get();
-            asteroid.transform.position = GeneratePosition();
         }
     }
 
     Vector3 GeneratePosition()
     {
-        var xPosition = Random.Range(xMin, xMax);
+        var xPosition = Random.Range(xMinSpawnPosition, xMaxSpawnPosition);
         var spawnPosition = new Vector3(xPosition, transform.position.y, 0);
         return spawnPosition;
     }

@@ -13,7 +13,7 @@ public class HealthItem : MonoBehaviour, IInteracteble, IDispawnObject
 
     public void OnInteract()
     {
-        Debug.Log("Health item");
+        Debug.Log("Игрок взял хил");
         playerStats.AddHealth(healthToAdd);
         gameObject.SetActive(false);
     }

@@ -34,17 +34,17 @@ public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble
 
     void DispawnAsteroid()
     {
-        Debug.Log("Asteroid has been dispawned!");
+        Debug.Log("Астероид задиспавнился");
         gameObject.SetActive(false);
     }
 
     void SpawnCoin()
     {
-        Debug.Log("SpawnCoin");
+        Debug.Log("Астероид спавнит монеты после уничтожения.");
 
         for (int i = 0; i < coinToSpawn; i++)
         {
-            EventBus.Sus.spawnCoin?.Invoke(transform.position, valueOfCoinToSpawn);
+            EventBus.Get.spawnCoin?.Invoke(transform.position, valueOfCoinToSpawn);
         }
     }
 }
