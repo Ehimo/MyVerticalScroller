@@ -9,16 +9,9 @@ public class Coin : MonoBehaviour, IDispawnObject, IInteracteble
     {
         this.coinValue = coinValue;
     }
-
-    PlayerStats playerStats;
-    void Start()
-    {
-        playerStats = FindFirstObjectByType<PlayerStats>();
-    }
-    
     public void OnInteract()
     {
-        playerStats.Money += coinValue;
+        EventBus.Get.inGameCoinCollected?.Invoke(coinValue);
         gameObject.SetActive(false);
     }
 

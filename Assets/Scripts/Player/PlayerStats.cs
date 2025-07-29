@@ -60,6 +60,11 @@ public class PlayerStats : MonoBehaviour
 
     void Start()
     {
-        playerHealth = maxPlayerHealth;    
+        playerHealth = maxPlayerHealth;
+        EventBus.Get.addThisCoinAndSave += (int addMoney) => 
+        {
+            Money += addMoney;
+            // Сохранение монет.
+        };
     }
 }
