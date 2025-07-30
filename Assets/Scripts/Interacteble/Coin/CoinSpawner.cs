@@ -11,7 +11,7 @@ public class CoinSpawner : MonoBehaviour
     {
         coinPool = new CustomPool<Coin>(pfCoin, fistPoolInitCount, objectParent);
         
-        EventBus.Get.spawnCoin += SpawnCoin;
+        ServiceLocator.Current.Get<EventBus>().spawnCoin += SpawnCoin;
     }
 
 

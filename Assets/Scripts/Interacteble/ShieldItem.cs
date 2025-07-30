@@ -2,17 +2,10 @@ using UnityEngine;
 
 public class ShieldItem : MonoBehaviour, IDispawnObject, IInteracteble
 {
-    PlayerStats playerStats;
-
-    void Start()
-    {
-        playerStats = FindFirstObjectByType<PlayerStats>();
-    }
-
-    public async void OnInteract()
+    public void OnInteract()
     {
         Debug.Log("Игрок взял щит");
-        await playerStats.ActiveShield();
+        ServiceLocator.Current.Get<PlayerStats>().ActiveShield();
         gameObject.SetActive(false);
     }
 }

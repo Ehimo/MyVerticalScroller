@@ -1,9 +1,8 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour
+public class PlayerStats : MonoBehaviour, IService
 {
-
     [SerializeField] int shieldTimer = 20;
 
     [SerializeField] Transform shieldObject;
@@ -58,10 +57,10 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    void Start()
+    public void Init()
     {
         playerHealth = maxPlayerHealth;
-        EventBus.Get.addThisCoinAndSave += (int addMoney) => 
+        ServiceLocator.Current.Get<EventBus>().addThisCoinAndSave += (int addMoney) => 
         {
             Money += addMoney;
             // Сохранение монет.
