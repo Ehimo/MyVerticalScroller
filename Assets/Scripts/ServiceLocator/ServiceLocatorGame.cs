@@ -20,11 +20,11 @@ public class ServiceLocatorGame : MonoBehaviour
     {
         ServiceLocator.Init();
 
-        ServiceLocator.Current.Register<PlayerStats>(playerStats);
-        ServiceLocator.Current.Register<EventBus>(eventBus);
-        ServiceLocator.Current.Register<Coin>(coin);
-        ServiceLocator.Current.Register<LevelInGameData>(data);
-        ServiceLocator.Current.Register<Asteroid>(asteroid);
+        ServiceLocator.Current.Register(playerStats);
+        ServiceLocator.Current.Register(eventBus);
+        ServiceLocator.Current.Register(coin);
+        ServiceLocator.Current.Register(data);
+        ServiceLocator.Current.Register(asteroid);
     }
 
     void Init()
