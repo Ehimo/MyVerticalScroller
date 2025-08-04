@@ -5,14 +5,14 @@ public class ServiceLocatorMenu : MonoBehaviour
 {
     [SerializeField] MainTextScript mainTextObject;
     [SerializeField] MainObjectScript mainObject;
-    
     [SerializeField] BackButtonScript backButton;
 
     EventBus eventBus;
-
+    LevelDataContainer levelDataContainer;
     void Awake()
     {
         eventBus = new();
+        levelDataContainer = new();
 
         RegisterServices();
 
@@ -26,5 +26,6 @@ public class ServiceLocatorMenu : MonoBehaviour
         ServiceLocator.Current.Register(mainTextObject);
         ServiceLocator.Current.Register(mainObject);
         ServiceLocator.Current.Register(eventBus);
+        ServiceLocator.Current.Register(levelDataContainer);
     }
 }

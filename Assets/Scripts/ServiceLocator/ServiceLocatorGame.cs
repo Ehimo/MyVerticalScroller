@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 public class ServiceLocatorGame : MonoBehaviour
@@ -7,11 +6,15 @@ public class ServiceLocatorGame : MonoBehaviour
     [SerializeField] Coin coin;
     [SerializeField] LevelInGameData data;
     [SerializeField] Asteroid asteroid;
+    [SerializeField] GameTimerClass gameTimer;
 
+    LevelDataContainer levelDataContainer;
     EventBus eventBus;
+
     void Awake()
     {
         eventBus = new();
+        levelDataContainer = new();
 
         RegisterServices();
         Init();
@@ -26,10 +29,13 @@ public class ServiceLocatorGame : MonoBehaviour
         ServiceLocator.Current.Register(coin);
         ServiceLocator.Current.Register(data);
         ServiceLocator.Current.Register(asteroid);
+        ServiceLocator.Current.Register(levelDataContainer);
+        ServiceLocator.Current.Register(gameTimer);
     }
 
     void Init()
     {
+        gameTimer.Init();
         playerStats.Init();
         coin.Init();
         data.Init();

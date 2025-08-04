@@ -8,6 +8,7 @@ public class LevelInGameData : MonoBehaviour, IService
     [SerializeField] int playerCoinColleted = 0;
     // int playerScoreCollected = 0;
 
+
     public void Init()
     {
         var eventBus = ServiceLocator.Current.Get<EventBus>();
@@ -23,4 +24,5 @@ public class LevelInGameData : MonoBehaviour, IService
             // —охранить полученные очки за пройденый уровень
         };
     }
+
 }

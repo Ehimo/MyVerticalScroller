@@ -8,18 +8,14 @@ public class BackgroundMover : MonoBehaviour
     SwapIndexClass backgroundSwapIndexClass;
     const float backgroundPositionToSwap = 0;
     const float backgroundPositionToSpawn = 40.96f;
-    
+    [SerializeField] int backgroundSpeed = -1;
+
 
     [SerializeField] List<Transform> borderObjects;
     SwapIndexClass borderSwapIndexClass;
     const float borderPositionToSwap = 3.4f;
     const float borderPositionToSpawn = 59;
-
-    
-    [SerializeField] int backgroundSpeed = -1;
-
-
-    [SerializeField] bool isWorking = false;
+    [SerializeField] int borderSpeed = -1;
 
     void Start()
     {
@@ -29,15 +25,15 @@ public class BackgroundMover : MonoBehaviour
 
     void Update()
     {
-        Mover(backgroundObjects, backgroundSwapIndexClass, backgroundPositionToSwap, backgroundPositionToSpawn);
-        Mover(borderObjects, borderSwapIndexClass, borderPositionToSwap, borderPositionToSpawn);
+        Mover(backgroundObjects, backgroundSwapIndexClass, backgroundPositionToSwap, backgroundPositionToSpawn, backgroundSpeed);
+        Mover(borderObjects, borderSwapIndexClass, borderPositionToSwap, borderPositionToSpawn, borderSpeed);
     }
 
 
-    void Mover(List<Transform> objects, SwapIndexClass swapIndexClass, float positionToSwap, float spawnPosition)
+    void Mover(List<Transform> objects, SwapIndexClass swapIndexClass, float positionToSwap, float spawnPosition, int speed)
     {
-        objects[0].Translate(0, backgroundSpeed * Time.deltaTime, 0);
-        objects[1].Translate(0, backgroundSpeed * Time.deltaTime, 0);
+        objects[0].Translate(0, speed * Time.deltaTime, 0);
+        objects[1].Translate(0, speed * Time.deltaTime, 0);
 
         var otherObject = objects.Where(obj => objects.IndexOf(obj) != swapIndexClass.SwapIndex).First();
         if(otherObject.transform.position.y <= positionToSwap)
