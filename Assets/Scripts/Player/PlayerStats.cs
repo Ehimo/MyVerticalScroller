@@ -1,25 +1,7 @@
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IService
 {
-    [SerializeField] int shieldTimer = 20;
-
-    [SerializeField] Transform shieldObject;
-    bool playerHasShield = false;
-    public bool PlayerHasShield() => playerHasShield;
-    public async Task ActiveShield()
-    {
-        playerHasShield = true;
-        Debug.Log("Эффект щита начался");
-        shieldObject.gameObject.SetActive(true);
-        
-        await Task.Delay(shieldTimer * 1000);
-        
-        shieldObject.gameObject.SetActive(false);
-        Debug.Log("Эффект щита закончился");
-        playerHasShield = false;
-    }
 
 
     [SerializeField] int money = 0;
@@ -65,5 +47,16 @@ public class PlayerStats : MonoBehaviour, IService
             Money += addMoney;
             // Сохранение монет.
         };
+    }
+
+    [SerializeField] int shieldTimer = 20;
+
+    [SerializeField] Transform shieldObject;
+    bool playerHasShield = false;
+    public bool PlayerHasShield() => playerHasShield;
+
+    void Start()
+    {
+        ServiceLocator.Current.Get<EventBus>().activeShield += () => { playerHasShield = true; };
     }
 }

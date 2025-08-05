@@ -26,7 +26,7 @@ public class GameTimerClass : MonoBehaviour, IService
     
         if(timeSlider.value == 0)
         {
-            Debug.Log("Win");
+            //Debug.Log("Win");
         }
     }
 }

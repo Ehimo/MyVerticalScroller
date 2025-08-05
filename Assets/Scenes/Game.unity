@@ -716,11 +716,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eca0fe879449e42bf1bbb53c02a2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shieldTimer: 20
-  shieldObject: {fileID: 691924561}
   money: 0
   playerHealth: 0
   maxPlayerHealth: 3
+  shieldTimer: 20
+  shieldObject: {fileID: 691924561}
 --- !u!114 &372945614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1191,14 +1191,14 @@ GameObject:
   m_Component:
   - component: {fileID: 691924561}
   - component: {fileID: 691924563}
-  - component: {fileID: 691924562}
+  - component: {fileID: 691924564}
   m_Layer: 0
   m_Name: EffectObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &691924561
 Transform:
   m_ObjectHideFlags: 0
@@ -1214,27 +1214,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 372945609}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &691924562
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 691924560}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 5ed18c992aa8202479d27861256bfa92, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!212 &691924563
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1287,6 +1266,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &691924564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 691924560}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 455b70c4c68ca984e8d0e484904f44de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldTime: 30
+  rotateSpeed: 200
 --- !u!1 &697638432
 GameObject:
   m_ObjectHideFlags: 0
