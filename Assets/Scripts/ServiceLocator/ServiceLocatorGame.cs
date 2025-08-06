@@ -7,6 +7,7 @@ public class ServiceLocatorGame : MonoBehaviour
     [SerializeField] LevelInGameData data;
     [SerializeField] Asteroid asteroid;
     [SerializeField] GameTimerClass gameTimer;
+    [SerializeField] Game game;
 
     LevelDataContainer levelDataContainer;
     EventBus eventBus;
@@ -31,14 +32,17 @@ public class ServiceLocatorGame : MonoBehaviour
         ServiceLocator.Current.Register(asteroid);
         ServiceLocator.Current.Register(levelDataContainer);
         ServiceLocator.Current.Register(gameTimer);
+        ServiceLocator.Current.Register(game);
     }
 
     void Init()
     {
-        gameTimer.Init();
         playerStats.Init();
         coin.Init();
         data.Init();
         asteroid.Init();
+        game.Init();
+        gameTimer.Init();
+
     }
 }

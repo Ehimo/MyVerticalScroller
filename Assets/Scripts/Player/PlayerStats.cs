@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IService
 {
-
-
     [SerializeField] int money = 0;
     public int Money
     {

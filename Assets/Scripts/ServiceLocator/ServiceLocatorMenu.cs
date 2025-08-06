@@ -9,10 +9,12 @@ public class ServiceLocatorMenu : MonoBehaviour
 
     EventBus eventBus;
     LevelDataContainer levelDataContainer;
+    Game game;
     void Awake()
     {
         eventBus = new();
         levelDataContainer = new();
+        game = new();
 
         RegisterServices();
 
@@ -27,5 +29,6 @@ public class ServiceLocatorMenu : MonoBehaviour
         ServiceLocator.Current.Register(mainObject);
         ServiceLocator.Current.Register(eventBus);
         ServiceLocator.Current.Register(levelDataContainer);
+        ServiceLocator.Current.Register(game);
     }
 }
