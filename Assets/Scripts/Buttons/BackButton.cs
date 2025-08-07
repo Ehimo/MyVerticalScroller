@@ -1,10 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackButtonScript : MonoBehaviour, IService
+public class BackButton : MonoBehaviour, IService
 {
-    public GameObject BackButton { get => gameObject; }
-
     void Start()
     {
         Button button = GetComponent<Button>();

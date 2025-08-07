@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class LevelInGameData : MonoBehaviour, IService
+public class GameData : MonoBehaviour, IService
 {
     [SerializeField] TextMeshProUGUI moneyText;
 
@@ -18,7 +18,7 @@ public class LevelInGameData : MonoBehaviour, IService
             moneyText.text = $"{playerCoinColleted}";
         };
         
-        eventBus.gameEnd += () =>
+        eventBus.playedDied += () =>
         {
             eventBus.addThisCoinAndSave?.Invoke(playerCoinColleted);
             // —охранить полученные очки за пройденый уровень

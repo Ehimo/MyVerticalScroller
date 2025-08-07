@@ -1,6 +1,6 @@
 using UnityEngine.UI;
 
-public class InfinityLevel : PlayButton
+public class InfinityLevelButton : PlayButton
 {
     public override void LoadLevel()
     {

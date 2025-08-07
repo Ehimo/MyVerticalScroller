@@ -5,7 +5,7 @@ public class ServiceLocatorMenu : MonoBehaviour
 {
     [SerializeField] MainTextScript mainTextObject;
     [SerializeField] MainObjectScript mainObject;
-    [SerializeField] BackButtonScript backButton;
+    [SerializeField] BackButton backButton;
 
     EventBus eventBus;
     LevelDataContainer levelDataContainer;

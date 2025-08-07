@@ -4,7 +4,7 @@ public class ServiceLocatorGame : MonoBehaviour
 {
     [SerializeField] PlayerStats playerStats;
     [SerializeField] Coin coin;
-    [SerializeField] LevelInGameData data;
+    [SerializeField] GameData data;
     [SerializeField] Asteroid asteroid;
     [SerializeField] GameTimerClass gameTimer;
     [SerializeField] Game game;
