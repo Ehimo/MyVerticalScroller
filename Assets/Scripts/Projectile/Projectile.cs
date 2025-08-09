@@ -18,6 +18,12 @@ public class Projectile : MonoBehaviour, IProjectile
     {
         shipStats = ServiceLocator.Current.Get<PlayerStats>().ShipStat;
         Release();
+
+        ServiceLocator.Current.Get<EventBus>().stopAll += () => 
+        {
+            rb.velocity = Vector3.zero;
+            this.enabled = false; 
+        };
     }
 
     int collisionCount = 0;

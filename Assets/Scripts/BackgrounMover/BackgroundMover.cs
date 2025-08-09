@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class BackgroundMover : MonoBehaviour
+public class BackgroundMover : NeedToStopWhenPlayerDies
 {
     [SerializeField] List<Transform> backgroundObjects;
     SwapIndexClass backgroundSwapIndexClass;
@@ -21,6 +21,11 @@ public class BackgroundMover : MonoBehaviour
     {
         backgroundSwapIndexClass = new(0);
         borderSwapIndexClass = new(0);
+    }
+
+    public override void Stop()
+    {
+        this.enabled = false;
     }
 
     void Update()

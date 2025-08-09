@@ -837,8 +837,8 @@ GameObject:
   - component: {fileID: 372945610}
   - component: {fileID: 372945614}
   - component: {fileID: 372945613}
+  - component: {fileID: 372945615}
   - component: {fileID: 372945612}
-  - component: {fileID: 372945607}
   - component: {fileID: 372945611}
   m_Layer: 0
   m_Name: Player
@@ -847,18 +847,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &372945607
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372945606}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b8a90e1b9db53741bddafefabd5dda5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &372945608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1029,7 +1017,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eca0fe879449e42bf1bbb53c02a2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shipStats: {fileID: 11400000, guid: 4bdf3ebf5e0f03544b983cfdf1c5bb9d, type: 2}
   money: 0
   playerHealth: 0
 --- !u!114 &372945614
@@ -1042,6 +1029,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 893054b1a4dbe6e44b5dd1daa66937a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &372945615
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372945606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8a90e1b9db53741bddafefabd5dda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &399433128
@@ -1705,7 +1704,7 @@ GameObject:
   - component: {fileID: 691924563}
   - component: {fileID: 691924564}
   m_Layer: 0
-  m_Name: EffectObject
+  m_Name: ShieldObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2458,6 +2457,13 @@ MonoBehaviour:
   endText: {fileID: 708522107}
   playerDeadText: You Dead!
   playerCompleteLevel: You Win!
+  objectToDiseable:
+  - {fileID: 1026240109}
+  - {fileID: 372945612}
+  - {fileID: 372945615}
+  - {fileID: 691924564}
+  - {fileID: 1096198979}
+  - {fileID: 1967147853}
 --- !u!4 &1015626098
 Transform:
   m_ObjectHideFlags: 0
@@ -3763,7 +3769,7 @@ MonoBehaviour:
   asteroid: {fileID: 5335175731045975324, guid: f94196e33bfabb2448d10db063f35a27, type: 3}
   gameTimer: {fileID: 139664194}
   game: {fileID: 1015626097}
-  playerMovementController: {fileID: 372945607}
+  playerMovementController: {fileID: 372945615}
   playerShootController: {fileID: 372945612}
 --- !u!4 &1745557410
 Transform:

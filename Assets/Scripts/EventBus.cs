@@ -7,6 +7,7 @@ public class EventBus : IService
     public Action<Vector3, int> spawnCoin;
 
     public Action playerCompleteLevel;
+    public Action stopAll;
     public Action playedDied;
 
     public Action<int> addThisCoinAndSave;

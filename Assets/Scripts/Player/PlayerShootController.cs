@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerShootController : MonoBehaviour, IService
+public class PlayerShootController : NeedToStopWhenPlayerDies, IService
 {
     [SerializeField] Transform projectileParent;
     [SerializeField] int firstPoolInitCount = 30;
@@ -21,6 +21,11 @@ public class PlayerShootController : MonoBehaviour, IService
     public void Init()
     {
         shipStats = ServiceLocator.Current.Get<PlayerStats>().ShipStat;
+    }
+
+    public override void Stop()
+    {
+        this.enabled = false;
     }
 
     async void Update()

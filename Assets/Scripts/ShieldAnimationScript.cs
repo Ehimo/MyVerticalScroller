@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ShieldAnimationScript : MonoBehaviour
+public class ShieldAnimationScript : NeedToStopWhenPlayerDies
 {
     [SerializeField] int shieldTime = 0;
     [SerializeField] int rotateSpeed = 10;
@@ -19,7 +19,13 @@ public class ShieldAnimationScript : MonoBehaviour
         {
             spriteRenderer.enabled = true;
             StartCoroutine(ShieldAnimation());        
-        };    
+        };
+    }
+
+    public override void Stop()
+    {
+        StopAllCoroutines();
+        this.enabled = false;
     }
 
     IEnumerator ShieldAnimation()

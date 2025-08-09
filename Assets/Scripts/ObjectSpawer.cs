@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ObjectSpawer : MonoBehaviour
+public class ObjectSpawer : NeedToStopWhenPlayerDies
 {
     float xMinSpawnPosition = -5.2f;
     float xMaxSpawnPosition = 5.2f;
@@ -18,6 +18,11 @@ public class ObjectSpawer : MonoBehaviour
     void Start()
     {
         pool = new CustomPool<Asteroid>(pfAsterodin, firstPoolInitCount, objectParent);
+    }
+
+    public override void Stop()
+    {
+        this.enabled = false;
     }
 
     void Update()

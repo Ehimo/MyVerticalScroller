@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovementController : MonoBehaviour, IService
+public class PlayerMovementController : NeedToStopWhenPlayerDies, IService 
 {
     Rigidbody2D rb;
 
@@ -10,6 +10,12 @@ public class PlayerMovementController : MonoBehaviour, IService
     }
 
     ShipStats shipStats;
+
+    public override void Stop()
+    {
+        rb.velocity = Vector3.zero;
+        this.enabled = false;
+    }
 
     public void Init()
     {

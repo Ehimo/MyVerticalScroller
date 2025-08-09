@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class FlameAnimationScript : MonoBehaviour
+public class FlameAnimationScript : NeedToStopWhenPlayerDies
 {
     [SerializeField] Sprite[] fireSprites;
     [SerializeField] float timeToChangeSprite = 0.5f;
@@ -13,6 +13,11 @@ public class FlameAnimationScript : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
 
         StartCoroutine(FlameAnimationCoroutine());    
+    }
+    public override void Stop()
+    {
+        StopAllCoroutines();
+        this.enabled = false;
     }
 
     IEnumerator FlameAnimationCoroutine()
