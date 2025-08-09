@@ -17,7 +17,16 @@ public class Game : MonoBehaviour, IService
         loadLevel = _loadLevel;
     }
 
+    /// <summary>
+    /// Если level с ограничение по времени то нужно передать true а если без то false. 
+    /// </summary>
+    public void SetIsLevelInfinity(bool type)
+    {
+        levelIsInfinity = type;
+    }
+    static bool levelIsInfinity = false;
 
+    public bool LevelIsInfinity => levelIsInfinity;
     public void Init()
     {
         if (loadLevel != null)

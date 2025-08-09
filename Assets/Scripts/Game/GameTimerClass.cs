@@ -24,7 +24,7 @@ public class GameTimerClass : MonoBehaviour, IService
 
         timeSlider.value = timer / maxLevelTime;
     
-        if(timeSlider.value == 0)
+        if(timeSlider.value == 0 && !ServiceLocator.Current.Get<Game>().LevelIsInfinity)
         {
             ServiceLocator.Current.Get<EventBus>()?.playerCompleteLevel.Invoke();
         }

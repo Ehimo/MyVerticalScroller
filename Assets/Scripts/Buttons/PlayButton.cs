@@ -20,8 +20,8 @@ public class PlayButton : MonoBehaviour, ILoadLevel
     public virtual void LoadLevel()
     {
         ServiceLocator.Current.Get<LevelDataContainer>().SetLevelTime(levelData.LevelTime);
+        ServiceLocator.Current.Get<Game>().SetIsLevelInfinity(false);
 
         Debug.Log($"{ServiceLocator.Current.Get<LevelDataContainer>().LevelTime} == LevelTime");
-
     }
 }
