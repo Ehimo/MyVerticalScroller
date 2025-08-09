@@ -1,41 +1,60 @@
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class TestProjectileScript : MonoBehaviour, IDestroyAsteroid, IProjectile    
+public class Projectile : MonoBehaviour, IProjectile
 {
-    [SerializeField] float bulletSpeed = 100f;
-    
     Rigidbody2D rb;
 
     Task releaseTask;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>(); 
+        rb = GetComponent<Rigidbody2D>();
     }
+
+    ShipStats shipStats;
 
     void Start()
     {
+        shipStats = ServiceLocator.Current.Get<PlayerStats>().ShipStat;
         Release();
     }
 
-    void OnEnable()
+    int collisionCount = 0;
+    void OnTriggerEnter2D(Collider2D collision)
     {
-        rb.velocity = Vector2.up * bulletSpeed * Time.fixedDeltaTime;
+        ICanDestroyedByBullet canDestroyObject = collision.gameObject.GetComponent<ICanDestroyedByBullet>();
+        if (canDestroyObject != null)
+        {
+            canDestroyObject.OnCollisionWithProjectile();
+
+            collisionCount++;
+            if (collisionCount == shipStats.ProjectilePassesThroughEnemy)
+            {
+                collisionCount = 0;
+                gameObject.SetActive(false);
+            }
+        }
     }
+
+    void Update()
+    {
+        rb.velocity = Vector2.up * shipStats.BulletSpeed * Time.fixedDeltaTime;
+    }
+
+    int bulletTimeToDispawn = 10;
 
     async void Release()
     {
-        releaseTask = Task.Delay(10000);
+        releaseTask = Task.Delay(bulletTimeToDispawn * 1000);
         await releaseTask;
 
-        if(releaseTask != null)
-        gameObject.SetActive(false);
+        if (releaseTask != null)
+            gameObject.SetActive(false);
     }
 
     void OnDisable()
     {
-        if (!gameObject.activeInHierarchy)
-            releaseTask = null;
+        releaseTask = null;
     }
 }

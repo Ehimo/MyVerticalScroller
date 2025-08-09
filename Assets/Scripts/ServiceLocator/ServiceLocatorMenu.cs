@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class ServiceLocatorMenu : MonoBehaviour
@@ -10,6 +9,7 @@ public class ServiceLocatorMenu : MonoBehaviour
     EventBus eventBus;
     LevelDataContainer levelDataContainer;
     Game game;
+    
     void Awake()
     {
         eventBus = new();

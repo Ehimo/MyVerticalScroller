@@ -8,6 +8,8 @@ public class ServiceLocatorGame : MonoBehaviour
     [SerializeField] Asteroid asteroid;
     [SerializeField] GameTimerClass gameTimer;
     [SerializeField] Game game;
+    [SerializeField] PlayerMovementController playerMovementController;
+    [SerializeField] PlayerShootController playerShootController;
 
     LevelDataContainer levelDataContainer;
     EventBus eventBus;
@@ -25,6 +27,8 @@ public class ServiceLocatorGame : MonoBehaviour
     {
         ServiceLocator.Init();
 
+        ServiceLocator.Current.Register(playerMovementController);
+        ServiceLocator.Current.Register(game);
         ServiceLocator.Current.Register(playerStats);
         ServiceLocator.Current.Register(eventBus);
         ServiceLocator.Current.Register(coin);
@@ -32,7 +36,7 @@ public class ServiceLocatorGame : MonoBehaviour
         ServiceLocator.Current.Register(asteroid);
         ServiceLocator.Current.Register(levelDataContainer);
         ServiceLocator.Current.Register(gameTimer);
-        ServiceLocator.Current.Register(game);
+        ServiceLocator.Current.Register(playerShootController);
     }
 
     void Init()
@@ -43,6 +47,7 @@ public class ServiceLocatorGame : MonoBehaviour
         asteroid.Init();
         game.Init();
         gameTimer.Init();
-
+        playerMovementController.Init();
+        playerShootController.Init();
     }
 }

@@ -1,21 +1,26 @@
-using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class PlayerShootController : MonoBehaviour
+public class PlayerShootController : MonoBehaviour, IService
 {
-    [SerializeField] Transform bulletParent;
+    [SerializeField] Transform projectileParent;
     [SerializeField] int firstPoolInitCount = 30;
-    [SerializeField] TestProjectileScript pfProjectile;
+    [SerializeField] Projectile pfProjectile;
     [SerializeField] Transform spawnPosition;
+    CustomPool<Projectile> pool;
+
     bool canShoot = true;
 
-    [SerializeField] int reloadTimeInMilliseconds = 100;
-    CustomPool<TestProjectileScript> pool;
-    
     void Start()
     {
-        pool = new CustomPool<TestProjectileScript>(pfProjectile, firstPoolInitCount, bulletParent);    
+        pool = new CustomPool<Projectile>(pfProjectile, firstPoolInitCount, projectileParent);    
+    }
+
+    ShipStats shipStats;
+
+    public void Init()
+    {
+        shipStats = ServiceLocator.Current.Get<PlayerStats>().ShipStat;
     }
 
     async void Update()
@@ -29,7 +34,7 @@ public class PlayerShootController : MonoBehaviour
             projectile.transform.position = spawnPosition.position;
             canShoot = false;
 
-            await Task.Delay(reloadTimeInMilliseconds);
+            await Task.Delay((int)(shipStats.ShipReloadTime * 1000));
             Debug.Log("Игрок перезарядился");
             canShoot = true;
         }   

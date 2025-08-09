@@ -2,6 +2,36 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IService
 {
+    public ShipStats ShipStat => shipStats;
+
+    static ShipStats shipStats;
+    public void SetShipStats(ShipStats _shipStats)
+    {
+        shipStats = _shipStats;
+    }
+
+    public void Init()
+    {
+        playerHealth = shipStats.ShipMaxHealth;
+
+        ServiceLocator.Current.Get<EventBus>().addThisCoinAndSave += (int addMoney) =>
+        {
+            Money += addMoney;
+            // Сохранение монет.
+        };
+        
+        ServiceLocator.Current.Get<EventBus>().activeShield += () => { playerHasShield = true; };
+    }
+    
+    void Start()
+    {
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = shipStats.ShipSprite;
+    }
+
+    bool playerHasShield = false;
+    public bool PlayerHasShield => playerHasShield;
+
     [SerializeField] int money = 0;
     public int Money
     {
@@ -13,15 +43,14 @@ public class PlayerStats : MonoBehaviour, IService
     }
 
     [SerializeField] int playerHealth = 0;
-    [SerializeField] int maxPlayerHealth = 3;
 
     public void AddHealth(int health)
     {
         playerHealth += health;
 
-        if (playerHealth > maxPlayerHealth)
+        if (playerHealth > shipStats.ShipMaxHealth)
         {
-            playerHealth = maxPlayerHealth;
+            playerHealth = shipStats.ShipMaxHealth;
             // Event to change health UI.
         }
     }
@@ -33,28 +62,7 @@ public class PlayerStats : MonoBehaviour, IService
         {
             // Event to stop game.
             Debug.Log("Игрок умер");
-            
+            ServiceLocator.Current.Get<EventBus>()?.playedDied.Invoke();
         }
-    }
-
-    public void Init()
-    {
-        playerHealth = maxPlayerHealth;
-        ServiceLocator.Current.Get<EventBus>().addThisCoinAndSave += (int addMoney) => 
-        {
-            Money += addMoney;
-            // Сохранение монет.
-        };
-    }
-
-    [SerializeField] int shieldTimer = 20;
-
-    [SerializeField] Transform shieldObject;
-    bool playerHasShield = false;
-    public bool PlayerHasShield() => playerHasShield;
-
-    void Start()
-    {
-        ServiceLocator.Current.Get<EventBus>().activeShield += () => { playerHasShield = true; };
     }
 }

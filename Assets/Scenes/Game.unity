@@ -859,7 +859,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8a90e1b9db53741bddafefabd5dda5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1000
 --- !u!212 &372945608
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1014,11 +1013,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f585f6b0abf8e1c48965f59f8b9a06e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletParent: {fileID: 118237416}
+  projectileParent: {fileID: 118237416}
   firstPoolInitCount: 100
   pfProjectile: {fileID: 1989878747600072070, guid: 70ed194e96b12974ead4bae44455f93d, type: 3}
   spawnPosition: {fileID: 332067712}
-  reloadTimeInMilliseconds: 100
 --- !u!114 &372945613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1031,11 +1029,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91eca0fe879449e42bf1bbb53c02a2fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shipStats: {fileID: 11400000, guid: 4bdf3ebf5e0f03544b983cfdf1c5bb9d, type: 2}
   money: 0
   playerHealth: 0
-  maxPlayerHealth: 3
-  shieldTimer: 20
-  shieldObject: {fileID: 691924561}
 --- !u!114 &372945614
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3767,6 +3763,8 @@ MonoBehaviour:
   asteroid: {fileID: 5335175731045975324, guid: f94196e33bfabb2448d10db063f35a27, type: 3}
   gameTimer: {fileID: 139664194}
   game: {fileID: 1015626097}
+  playerMovementController: {fileID: 372945607}
+  playerShootController: {fileID: 372945612}
 --- !u!4 &1745557410
 Transform:
   m_ObjectHideFlags: 0

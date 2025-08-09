@@ -1,19 +1,14 @@
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble, IService
+public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble, IService, ICanDestroyedByBullet
 {
     [SerializeField] int collideDamage = 1;
-    [SerializeField] int coinToSpawn = 1;
-    [SerializeField] int valueOfCoinToSpawn = 1;
+    [SerializeField] int spawnedCoinValue = 1;
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionWithProjectile()
     {
-        if (collision.gameObject.GetComponent<IDestroyAsteroid>() != null)
-        {
-            SpawnCoin();
-            DispawnAsteroid();
-            collision.gameObject.SetActive(false);
-        }
+        SpawnCoin();
+        DispawnAsteroid();
     }
 
     static PlayerStats playerStats;
@@ -28,7 +23,7 @@ public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble, IService
     [SerializeField] int collideHealthDamage = 1;
     public void OnInteract()
     {
-        if (!playerStats.PlayerHasShield())
+        if (!playerStats.PlayerHasShield)
             playerStats.RemoveHealth(collideHealthDamage);
 
         DispawnAsteroid();
@@ -42,12 +37,9 @@ public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble, IService
 
     void SpawnCoin()
     {
-        Debug.Log("Астероид спавнит монеты после уничтожения.");
+        Debug.Log("Астероид спавнит монету после уничтожения.");
 
-        for (int i = 0; i < coinToSpawn; i++)
-        {
-            eventBus.spawnCoin?.Invoke(transform.position, valueOfCoinToSpawn);
-        }
+        eventBus.spawnCoin?.Invoke(transform.position, spawnedCoinValue);
     }
 }
 

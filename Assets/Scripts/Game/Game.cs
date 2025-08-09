@@ -9,6 +9,7 @@ public class Game : MonoBehaviour, IService
 
     [SerializeField] string playerDeadText = "You Dead!";
     [SerializeField] string playerCompleteLevel = "You Win!";
+
     static ILoadLevel loadLevel;
 
     public void SetLoadLovel(ILoadLevel _loadLevel)

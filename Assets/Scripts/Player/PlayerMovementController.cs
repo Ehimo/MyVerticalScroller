@@ -1,12 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
-public class PlayerMovementController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour, IService
 {
-    [SerializeField] float moveSpeed = 10f;
-    
     Rigidbody2D rb;
 
     void Start()
@@ -14,10 +9,17 @@ public class PlayerMovementController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    ShipStats shipStats;
+
+    public void Init()
+    {
+        shipStats = ServiceLocator.Current.Get<PlayerStats>().ShipStat;        
+    }
+
     void Update()
     {
         var playerInput = Input.GetAxisRaw("Horizontal");
-        rb.velocity = Vector2.right * playerInput * moveSpeed * Time.fixedDeltaTime;
+        rb.velocity = Vector2.right * playerInput * shipStats.ShipMoveSpeed * Time.fixedDeltaTime;
     }
 
 }
