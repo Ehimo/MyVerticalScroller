@@ -6,6 +6,7 @@ public class ServiceLocatorMenu : MonoBehaviour
     [SerializeField] MainObjectScript mainObject;
     [SerializeField] BackButton backButton;
 
+    PlayerStats playerStats;
     EventBus eventBus;
     LevelDataContainer levelDataContainer;
     Game game;
@@ -15,6 +16,7 @@ public class ServiceLocatorMenu : MonoBehaviour
         eventBus = new();
         levelDataContainer = new();
         game = new();
+        playerStats = new();
 
         RegisterServices();
 
@@ -25,6 +27,7 @@ public class ServiceLocatorMenu : MonoBehaviour
     {
         ServiceLocator.Init();
 
+        ServiceLocator.Current.Register(playerStats);
         ServiceLocator.Current.Register(mainTextObject);
         ServiceLocator.Current.Register(mainObject);
         ServiceLocator.Current.Register(eventBus);

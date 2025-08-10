@@ -15,7 +15,7 @@ public class MenuButton : MonoBehaviour
         ServiceLocator.Current.Get<EventBus>().backButtonClicked += OnBackButtonClicked;
     }
 
-    void OnThisButtonClick()
+    public void OnThisButtonClick()
     {
         var locator = ServiceLocator.Current;
         locator.Get<MainObjectScript>().MainObject.SetActive(false);

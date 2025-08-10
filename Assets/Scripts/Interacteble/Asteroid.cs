@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Asteroid : MonoBehaviour, IDispawnObject, IInteracteble, IService, ICanDestroyedByBullet
+public class Asteroid : ObjectToSpawm, IDispawnObject, IInteracteble, IService, ICanDestroyedByBullet
 {
     [SerializeField] int collideDamage = 1;
     [SerializeField] int spawnedCoinValue = 1;

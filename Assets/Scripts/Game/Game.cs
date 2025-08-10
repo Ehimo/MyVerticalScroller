@@ -19,6 +19,10 @@ public class Game : MonoBehaviour, IService
         loadLevel = _loadLevel;
     }
 
+    static bool levelIsInfinity = false;
+
+    public bool LevelIsInfinity => levelIsInfinity;
+
     /// <summary>
     /// Если level с ограничение по времени то нужно передать true а если без то false. 
     /// </summary>
@@ -26,9 +30,12 @@ public class Game : MonoBehaviour, IService
     {
         levelIsInfinity = type;
     }
-    static bool levelIsInfinity = false;
 
-    public bool LevelIsInfinity => levelIsInfinity;
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(1);
+    }
+
     public void Init()
     {
         if (loadLevel != null)
@@ -39,11 +46,6 @@ public class Game : MonoBehaviour, IService
         {
             Debug.LogError("Load level is null");
         }
-    }
-
-    public void RestartGame()
-    {
-        SceneManager.LoadScene(1);
     }
 
     void Start()

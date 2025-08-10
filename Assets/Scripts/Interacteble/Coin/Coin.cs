@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Coin : MonoBehaviour, IDispawnObject, IInteracteble, IService
+public class Coin : ObjectToSpawm, IDispawnObject, IInteracteble, IService
 {
     [SerializeField] int coinValue = 0;
     public int CoinValue { get => coinValue; }
