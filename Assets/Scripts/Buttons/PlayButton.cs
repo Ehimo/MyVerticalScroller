@@ -1,27 +1,18 @@
-using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using System;
 
-public class PlayButton : MonoBehaviour, ILoadLevel
+public class PlayButton : BasicButton
 {
-    [SerializeField] LevelData levelData;
-
-    void Start()
+    protected override void OnClickThisButton()
     {
-        Button button = GetComponent<Button>();
-        button.onClick.AddListener(() =>
+        Action<EObjectToActiveName> action = ServiceLocator.Current.Get<EventBus>().buttonClicked;
+        
+        if (ServiceLocator.Current.Get<PlayerStats>().ShipStat != null)
         {
-            ServiceLocator.Current.Get<Game>().SetLoadLovel(this);
-
-            SceneManager.LoadScene(1);
-        });
-    }
-
-    public virtual void LoadLevel()
-    {
-        ServiceLocator.Current.Get<LevelDataContainer>().SetLevelTime(levelData.LevelTime);
-        ServiceLocator.Current.Get<Game>().SetIsLevelInfinity(false);
-
-        Debug.Log($"{ServiceLocator.Current.Get<LevelDataContainer>().LevelTime} == LevelTime");
+            action?.Invoke(EObjectToActiveName.SelectLevels);
+        }
+        else
+        {
+            action?.Invoke(EObjectToActiveName.SelectShips);
+        }
     }
 }

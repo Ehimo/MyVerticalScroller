@@ -13,8 +13,8 @@ public class EventBus : IService
     public Action<int> addThisCoinAndSave;
     public Action<int> inGameCoinCollected;
 
-    public Action backButtonClicked;
-    public Action menuButtonClicked;
+    public Action<EObjectToActiveName> buttonClicked;
 
     public Action activeShield;
+
 }

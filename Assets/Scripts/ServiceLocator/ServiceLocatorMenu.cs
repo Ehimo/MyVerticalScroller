@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class ServiceLocatorMenu : MonoBehaviour
 {
-    [SerializeField] MainTextScript mainTextObject;
-    [SerializeField] MainObjectScript mainObject;
-    [SerializeField] BackButton backButton;
 
     PlayerStats playerStats;
     EventBus eventBus;
@@ -19,8 +16,6 @@ public class ServiceLocatorMenu : MonoBehaviour
         playerStats = new();
 
         RegisterServices();
-
-        eventBus.menuButtonClicked += () => { backButton.gameObject.SetActive(true); };
     }
 
     void RegisterServices() 
@@ -28,8 +23,6 @@ public class ServiceLocatorMenu : MonoBehaviour
         ServiceLocator.Init();
 
         ServiceLocator.Current.Register(playerStats);
-        ServiceLocator.Current.Register(mainTextObject);
-        ServiceLocator.Current.Register(mainObject);
         ServiceLocator.Current.Register(eventBus);
         ServiceLocator.Current.Register(levelDataContainer);
         ServiceLocator.Current.Register(game);

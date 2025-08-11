@@ -1,15 +1,6 @@
-using UnityEngine;
-using UnityEngine.UI;
-
-public class RestartButton : MonoBehaviour
+public class RestartButton : BasicButton
 {
-    void Start()
-    {
-        Button button = GetComponent<Button>();
-        button.onClick.AddListener(Restart);
-    }
-
-    void Restart()
+    protected override void OnClickThisButton()
     {
         ServiceLocator.Current.Get<Game>().RestartGame();
     }
