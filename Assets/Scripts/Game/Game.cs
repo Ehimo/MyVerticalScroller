@@ -33,7 +33,13 @@ public class Game : MonoBehaviour, IService
 
     public void RestartGame()
     {
+        SaveCoin();
         SceneManager.LoadScene(1);
+    }
+
+    void SaveCoin() 
+    {
+        ServiceLocator.Current.Get<EventBus>()?.saveCollectedCoins.Invoke();
     }
 
     public void Init()

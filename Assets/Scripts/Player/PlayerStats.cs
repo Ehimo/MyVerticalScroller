@@ -27,6 +27,8 @@ public class PlayerStats : MonoBehaviour, IService
     {
         var spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = shipStats.ShipSprite;
+
+        ServiceLocator.Current.Get<EventBus>().disableShield += () => { playerHasShield = !playerHasShield; };
     }
 
     bool playerHasShield = false;

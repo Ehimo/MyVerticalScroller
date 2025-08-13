@@ -40,5 +40,6 @@ public class ShieldAnimationScript : NeedToStopWhenPlayerDies
         }
 
         spriteRenderer.enabled = false;
+        ServiceLocator.Current.Get<EventBus>()?.disableShield.Invoke();
     }
 }
